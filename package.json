@@ -1,0 +1,26 @@
+{
+  "name": "esti-mate-cli",
+  "version": "1.0.0",
+  "description": "Project estimation CLI tool",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "execute": "node ./dist/index.js",
+    "start": "run-s build execute",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gergely Sipos",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cli-table2": "^0.2.1",
+    "@types/fs-extra": "^5.0.2",
+    "@types/inquirer": "0.0.41",
+    "npm-run-all": "^4.1.2",
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "cli-table2": "^0.2.0",
+    "fs-extra": "^5.0.0",
+    "inquirer": "^5.2.0"
+  }
+}
