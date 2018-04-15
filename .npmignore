@@ -1,0 +1,6 @@
+.travis.yml
+*.project.json
+tsconfig.json
+src
+.git
+package-lock.json

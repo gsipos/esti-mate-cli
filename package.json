@@ -22,5 +22,8 @@
     "cli-table2": "^0.2.0",
     "fs-extra": "^5.0.0",
     "inquirer": "^5.2.0"
+  },
+  "bin": {
+    "esti-mate-cli": "./bin/esti-mate-cli"
   }
 }
