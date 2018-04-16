@@ -6,8 +6,7 @@
   "scripts": {
     "build": "tsc",
     "execute": "node ./dist/index.js",
-    "start": "run-s build execute",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "run-s build execute"
   },
   "author": "Gergely Sipos",
   "license": "MIT",

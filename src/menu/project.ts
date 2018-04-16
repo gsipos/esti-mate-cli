@@ -10,12 +10,14 @@ import Table from "cli-table2";
 import { listTags } from "./list-tags";
 import { saveProjectToFile } from "../files";
 import { chooseProjectMenu } from "./choose-project";
+import { chooseTask } from "./choose-task";
 
 enum ProjectMenuEntry {
   ADD_TASK = "Add task",
   SHOW_PROJECT_SUMMARY = "Show project summary",
   SHOW_TASKS = "Show tasks",
   SHOW_TAGS = "Show Tags",
+  MODIFY_TASK = "Modify task",
   SAVE = "Save",
   SELECT_PROJECT = "Select project"
 }
@@ -25,6 +27,7 @@ const choices = [
   ProjectMenuEntry.SHOW_PROJECT_SUMMARY,
   ProjectMenuEntry.SHOW_TASKS,
   ProjectMenuEntry.SHOW_TAGS,
+  ProjectMenuEntry.MODIFY_TASK,
   ProjectMenuEntry.SAVE,
   ProjectMenuEntry.SELECT_PROJECT
 ];
@@ -90,4 +93,8 @@ export async function showProjectMenu(project: Project) {
   executeOnChoice(ProjectMenuEntry.SELECT_PROJECT, answer, () =>
     chooseProjectMenu()
   );
+  executeOnChoice(ProjectMenuEntry.MODIFY_TASK, answer, async () => {
+    await chooseTask(project);
+    showProjectMenu(project);
+  });
 }
