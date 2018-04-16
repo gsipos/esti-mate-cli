@@ -3,6 +3,7 @@ import inquirer from "inquirer";
 import { internals } from "rx";
 import { estimateFromString } from "./add-task";
 import { listTasks } from "./list-tasks";
+import { addMenuSeparator } from "./utils";
 
 const choices = [
   "Change task name",
@@ -19,6 +20,7 @@ const taskMenu: inquirer.Question = {
 };
 
 export async function showTaskMenu(project: Project, task: Task) {
+  addMenuSeparator();
   listTasks([task]);
   const answer = await inquirer.prompt(taskMenu);
   const idx = choices.indexOf(answer.name);

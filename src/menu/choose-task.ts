@@ -1,6 +1,7 @@
 import { Project } from "../model";
 import inquirer from "inquirer";
 import { showTaskMenu } from "./task";
+import { addMenuSeparator } from "./utils";
 
 const chooseTaskMenu: inquirer.Question = {
     type: 'list',
@@ -9,6 +10,7 @@ const chooseTaskMenu: inquirer.Question = {
 };
 
 export async function chooseTask(project: Project) {
+    addMenuSeparator();
     const choices = project.tasks.map(t => ({
         name: t.code + ' ' + t.name,
         value: t

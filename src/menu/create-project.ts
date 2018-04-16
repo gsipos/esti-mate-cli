@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
 import { Project, confidenceIntervals } from "../model";
 import { showProjectMenu } from "./project";
+import { addMenuSeparator } from "./utils";
 
 interface ProjectInit {
     name: string;
@@ -39,6 +40,7 @@ const createProject: inquirer.Question<ProjectInit>[] = [
 ];
 
 export async function createProjectMenu() {
+    addMenuSeparator();
     const { name, short, defaultInterval } = await inquirer.prompt(createProject);
     const project: Project = {
         name,

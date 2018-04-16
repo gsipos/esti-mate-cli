@@ -11,6 +11,7 @@ import { listTags } from "./list-tags";
 import { saveProjectToFile } from "../files";
 import { chooseProjectMenu } from "./choose-project";
 import { chooseTask } from "./choose-task";
+import { addMenuSeparator } from "./utils";
 
 enum ProjectMenuEntry {
   ADD_TASK = "Add task",
@@ -69,6 +70,7 @@ function executeOnChoice(
 }
 
 export async function showProjectMenu(project: Project) {
+  addMenuSeparator();
   const answer = await inquirer.prompt(ProjectMenu);
 
   executeOnChoice(ProjectMenuEntry.SHOW_PROJECT_SUMMARY, answer, () => {
