@@ -2,6 +2,12 @@
   "name": "esti-mate-cli",
   "version": "1.0.2",
   "description": "Project estimation CLI tool",
+  "keywords": [
+    "cli",
+    "project",
+    "estimate",
+    "estimation"
+  ],
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
