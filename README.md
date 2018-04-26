@@ -21,6 +21,7 @@ esti-mate-cli
 
 ### Creating a project
 At first you will be prompted to create project by entering a few stuff:
+
 | Property | Description |
 |----------|-------------|
 | Project name | A simple string to be used as a name |
@@ -41,6 +42,7 @@ When a project is selected:
 
 ### Add a Task
 A task has:
+
 | Property | Description |
 |----------|-------------|
 | Name     | Task's name, duh |
