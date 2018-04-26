@@ -8,7 +8,7 @@ import { showAddTaskPrompt } from "./add-task";
 import { listTasks } from "./list-tasks";
 import Table from "cli-table2";
 import { listTags } from "./list-tags";
-import { saveProjectToFile } from "../files";
+import { saveProjectToFile } from "../service/files";
 import { chooseProjectMenu } from "./choose-project";
 import { chooseTask } from "./choose-task";
 import { addMenuSeparator } from "./utils";
@@ -19,7 +19,6 @@ enum ProjectMenuEntry {
   SHOW_TASKS = "Show tasks",
   SHOW_TAGS = "Show Tags",
   MODIFY_TASK = "Modify task",
-  SAVE = "Save",
   SELECT_PROJECT = "Select project"
 }
 
@@ -29,7 +28,6 @@ const choices = [
   ProjectMenuEntry.SHOW_TASKS,
   ProjectMenuEntry.SHOW_TAGS,
   ProjectMenuEntry.MODIFY_TASK,
-  ProjectMenuEntry.SAVE,
   ProjectMenuEntry.SELECT_PROJECT
 ];
 
@@ -86,10 +84,6 @@ export async function showProjectMenu(project: Project) {
   });
   executeOnChoice(ProjectMenuEntry.SHOW_TAGS, answer, () => {
     listTags(project);
-    showProjectMenu(project);
-  });
-  executeOnChoice(ProjectMenuEntry.SAVE, answer, () => {
-    saveProjectToFile(project);
     showProjectMenu(project);
   });
   executeOnChoice(ProjectMenuEntry.SELECT_PROJECT, answer, () =>

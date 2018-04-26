@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import { Project, confidenceIntervals } from "../model";
 import { showProjectMenu } from "./project";
 import { addMenuSeparator } from "./utils";
+import { saveProjectToFile } from "../service/files";
 
 interface ProjectInit {
     name: string;
@@ -48,5 +49,6 @@ export async function createProjectMenu() {
         defaultInterval: defaultInterval.value,
         tasks: []
     }
+    saveProjectToFile(project);
     showProjectMenu(project);
 }

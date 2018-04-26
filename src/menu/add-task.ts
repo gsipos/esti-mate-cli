@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import { Project, Task, Estimate } from "../model";
 import { showProjectMenu } from "./project";
 import { listTasks } from "./list-tasks";
+import { addTask } from "../service/task";
 
 function generateNextSequence(project: Project) {
   const max = project.tasks.reduce(
@@ -54,7 +55,7 @@ export async function showAddTaskPrompt(project: Project) {
     tags: tags.split(",").map(t => t.trim()),
     estimate: estimateFromString(estimate)
   };
-  project.tasks.push(task);
+  addTask(project, task)
   listTasks([task]);
   showProjectMenu(project);
 }

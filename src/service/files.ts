@@ -1,6 +1,6 @@
 import fse from 'fs-extra';
 import path from 'path';
-import { Project } from './model';
+import { Project } from '../model';
 
 const projectJsonExt = '.project.json';
 

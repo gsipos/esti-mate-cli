@@ -1,13 +1,14 @@
 import { Project, Task } from "../model";
 import inquirer from "inquirer";
-import { internals } from "rx";
 import { estimateFromString } from "./add-task";
 import { listTasks } from "./list-tasks";
 import { addMenuSeparator } from "./utils";
+import { changeTaskName, changeTaskEstimation, changeTaskTags, deleteTask } from '../service/task';
 
 const choices = [
   "Change task name",
   "Change estimation",
+  "Change tags",
   "Delete task",
   "Back to project"
 ];
@@ -25,25 +26,29 @@ export async function showTaskMenu(project: Project, task: Task) {
   const answer = await inquirer.prompt(taskMenu);
   const idx = choices.indexOf(answer.name);
   if (idx === 0) {
-    await changeTaskName(task);
+    await changeTaskNameMenu(task, project);
     await showTaskMenu(project, task);
   }
   if (idx === 1) {
-    await changeTaskEstimation(task);
+    await changeTaskEstimationMenu(task, project);
     await showTaskMenu(project, task);
   }
   if (idx === 2) {
-    const deleted = await deleteTask(task, project);
+    await changeTaskTagsMenu(task, project);
+    await showTaskMenu(project, task);
+  }
+  if (idx === 3) {
+    const deleted = await deleteTaskMenu(task, project);
     if (!deleted) {
       await showTaskMenu(project, task);
     }
   }
-  if (idx === 3) {
+  if (idx === 4) {
     return;
   }
 }
 
-async function changeTaskName(task: Task) {
+async function changeTaskNameMenu(task: Task, project: Project) {
   const answer = await inquirer.prompt<{ name: string }>({
     type: "input",
     name: "name",
@@ -51,25 +56,35 @@ async function changeTaskName(task: Task) {
     default: task.name
   });
   task.name = answer.name;
+  changeTaskName(project, task, answer.name);
 }
 
-async function changeTaskEstimation(task: Task) {
+async function changeTaskEstimationMenu(task: Task, project: Project) {
   const answer = await inquirer.prompt<{ estimate: string }>({
     type: "input",
     name: "estimate",
     message: "New estimation:"
   });
-  task.estimate = estimateFromString(answer.estimate);
+  changeTaskEstimation(project, task, estimateFromString(answer.estimate));
 }
 
-async function deleteTask(task: Task, project: Project) {
+async function changeTaskTagsMenu(task: Task, project: Project) {
+  const answer = await inquirer.prompt<{ tags: string }>({
+    type: "input",
+    name: "tags",
+    message: "New tags:"
+  });
+  changeTaskTags(project, task, answer.tags.split(','));
+}
+
+async function deleteTaskMenu(task: Task, project: Project) {
   const answer = await inquirer.prompt<{ confirm: boolean }>({
     type: "confirm",
     name: "confirm",
     message: "Are you sure you want to delete " + task.name + "?"
   });
   if (answer.confirm) {
-    project.tasks.splice(project.tasks.indexOf(task), 1);
+    deleteTask(project, task);
     return true;
   } else {
     return false;
