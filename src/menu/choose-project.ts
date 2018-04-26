@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { createProjectMenu } from "./create-project";
-import { getDirProjectFiles, loadProjectFromFile } from "../files";
+import { getDirProjectFiles, loadProjectFromFile } from "../service/files";
 import { showProjectMenu } from "./project";
 
 const mainMenuHandlers: { [key: string]: Function } = {
@@ -20,6 +20,12 @@ const mainMenu: inquirer.Question<{ mainMenuChoice: string }> = {
 
 export async function chooseProjectMenu() {
   const projectFiles = await getDirProjectFiles();
+
+  if (projectFiles.length === 0) {
+    createProjectMenu();
+    return;
+  }
+
   const choices = ["Create new", ...projectFiles];
   const answer = await inquirer.prompt({
     ...mainMenu,
