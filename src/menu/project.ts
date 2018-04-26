@@ -51,7 +51,7 @@ function displayProjectInfo(project: Project) {
     { "Name:": project.name },
     { "Task count:": project.tasks.length },
     { "Estimation:": wheightedAverageOfTasks(project.tasks).toFixed(2) },
-    { "Confidence Interval:": interval.min + " - " + interval.max }
+    { "Confidence Interval:": interval.min.toFixed(2) + " - " + interval.max.toFixed(2) }
   ];
   (table as Array<any>).push(...entries);
   console.log(table.toString());

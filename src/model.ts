@@ -49,7 +49,7 @@ export const confidenceIntervalCoEfficients = {
     99.7: 3
 };
 
-export const confidenceIntervalOfProject = (p: Project, interval: ConfidenceInterval) => {
+export const confidenceIntervalOfProject = (p: Project, interval: ConfidenceInterval = 95) => {
     const estimate = wheightedAverageOfTasks(p.tasks);
     const error = standardErrorOTasks(p.tasks);
     const coEfficient = confidenceIntervalCoEfficients[interval];
