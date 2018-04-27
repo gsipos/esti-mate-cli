@@ -1,9 +1,9 @@
 import { Project, Task } from "../model";
 import inquirer from "inquirer";
-import { estimateFromString } from "./add-task";
 import { listTasks } from "./list-tasks";
 import { addMenuSeparator } from "./utils";
 import { changeTaskName, changeTaskEstimation, changeTaskTags, deleteTask } from '../service/task';
+import { parseEstimateString, validateEstimateString } from "./validators/estimate";
 
 const choices = [
   "Change task name",
@@ -63,9 +63,10 @@ async function changeTaskEstimationMenu(task: Task, project: Project) {
   const answer = await inquirer.prompt<{ estimate: string }>({
     type: "input",
     name: "estimate",
-    message: "New estimation:"
+    message: "New estimation:",
+    validate: validateEstimateString
   });
-  changeTaskEstimation(project, task, estimateFromString(answer.estimate));
+  changeTaskEstimation(project, task, parseEstimateString(answer.estimate));
 }
 
 async function changeTaskTagsMenu(task: Task, project: Project) {
