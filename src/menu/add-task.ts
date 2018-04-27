@@ -3,6 +3,7 @@ import { Project, Task, Estimate } from "../model";
 import { showProjectMenu } from "./project";
 import { listTasks } from "./list-tasks";
 import { addTask } from "../service/task";
+import { validateEstimateString, parseEstimateString } from "./validators/estimate";
 
 function generateNextSequence(project: Project) {
   const max = project.tasks.reduce(
@@ -30,7 +31,8 @@ const addTaskPrompt: inquirer.Questions<TaskInit> = [
   {
     type: "input",
     name: "estimate",
-    message: "Estimate(best case, most likely, worst case)?"
+    message: "Estimate(best case, most likely, worst case)?",
+    validate: validateEstimateString
   },
   {
     type: "input",
@@ -39,21 +41,15 @@ const addTaskPrompt: inquirer.Questions<TaskInit> = [
   }
 ];
 
-export function estimateFromString(estimateString: string): Estimate {
-  const estimates = estimateString.split(" ").map(e => Number(e));
-  return { bestCase: estimates[0], mostLikely: estimates[1], worstCase: estimates[2] };
-}
-
 export async function showAddTaskPrompt(project: Project) {
   const { name, tags, estimate } = await inquirer.prompt(addTaskPrompt);
   const sequence = generateNextSequence(project);
-  const estimates = estimate.split(" ").map(e => Number(e));
   const task: Task = {
     sequence,
     code: generateCode(project.short, sequence),
     name,
     tags: tags.split(",").map(t => t.trim()),
-    estimate: estimateFromString(estimate)
+    estimate: parseEstimateString(estimate)
   };
   addTask(project, task)
   listTasks([task]);
