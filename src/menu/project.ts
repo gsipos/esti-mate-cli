@@ -12,6 +12,8 @@ import { saveProjectToFile } from "../service/files";
 import { chooseProjectMenu } from "./choose-project";
 import { chooseTask } from "./choose-task";
 import { addMenuSeparator } from "./utils";
+import { exportTasksToCSV } from "../service/task";
+import { exportTagsToCSV } from "../service/tag";
 
 enum ProjectMenuEntry {
   ADD_TASK = "Add task",
@@ -19,6 +21,8 @@ enum ProjectMenuEntry {
   SHOW_TASKS = "Show tasks",
   SHOW_TAGS = "Show Tags",
   MODIFY_TASK = "Modify task",
+  EXPORT_TASKS_TO_CSV = "Export tasks to CSV",
+  EXPORT_TAGS_TO_CSV = "Export tags to CSV",
   SELECT_PROJECT = "Select project"
 }
 
@@ -28,6 +32,8 @@ const choices = [
   ProjectMenuEntry.SHOW_TASKS,
   ProjectMenuEntry.SHOW_TAGS,
   ProjectMenuEntry.MODIFY_TASK,
+  ProjectMenuEntry.EXPORT_TASKS_TO_CSV,
+  ProjectMenuEntry.EXPORT_TAGS_TO_CSV,
   ProjectMenuEntry.SELECT_PROJECT
 ];
 
@@ -91,6 +97,14 @@ export async function showProjectMenu(project: Project) {
   );
   executeOnChoice(ProjectMenuEntry.MODIFY_TASK, answer, async () => {
     await chooseTask(project);
+    showProjectMenu(project);
+  });
+  executeOnChoice(ProjectMenuEntry.EXPORT_TASKS_TO_CSV, answer, async () => {
+    await exportTasksToCSV(project);
+    showProjectMenu(project);
+  });
+  executeOnChoice(ProjectMenuEntry.EXPORT_TAGS_TO_CSV, answer, async () => {
+    await exportTagsToCSV(project);
     showProjectMenu(project);
   });
 }
