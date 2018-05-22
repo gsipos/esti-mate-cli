@@ -1,6 +1,7 @@
 import fse from 'fs-extra';
 import path from 'path';
 import { Project } from '../model';
+import stringify from 'csv-stringify';
 
 const projectJsonExt = '.project.json';
 
@@ -22,4 +23,17 @@ export async function saveProjectToFile(project: Project, fileName: string = pro
     const filePath = path.join(process.cwd(), fileName);
     console.log('Saving to ', filePath);
     await fse.writeJson(filePath, project);
+}
+
+export async function saveToCSVfile(data: string, fileName: string) {
+    const filePath = path.join(process.cwd(), fileName);
+    console.log('Exporting to ', filePath);
+    await fse.writeFile(filePath, data);
+}
+
+export function stringifyToCSV(data: any[][], header: string[]) {
+    return new Promise<string>((resolve, reject) =>
+        stringify(
+            [header, ...data],
+            (err, output) => err ? reject(err) : resolve(output)));
 }

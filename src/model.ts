@@ -63,10 +63,3 @@ export const confidenceIntervalsOfProject = (p: Project) => confidenceIntervals.
     interval,
     ...confidenceIntervalOfProject(p, interval)
 }));
-
-
-export function tagsOf(p: Project) {
-    const tagSet: Set<string> = new Set();
-    p.tasks.forEach(task => task.tags.forEach(tag => tagSet.add(tag)));
-    return [...tagSet];
-}
