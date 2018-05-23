@@ -2,5 +2,6 @@
 *.project.json
 tsconfig.json
 src
+coverage
 .git
 package-lock.json
