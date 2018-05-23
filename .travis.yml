@@ -9,7 +9,12 @@ cache:
     - node_modules
 install:
   - npm install
-script:
-  - npm run build
-  - npm test
-  - npm run coveralls
+
+jobs:
+  include:
+    - stage: build
+      script: npm run build
+    - stage: test
+      script: npm run test
+    - stage: coverage
+      script: npm run coveralls
