@@ -12,7 +12,10 @@
   "scripts": {
     "build": "tsc",
     "execute": "node ./dist/index.js",
-    "start": "run-s build execute"
+    "start": "run-s build execute",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "author": "Gergely Sipos",
   "license": "MIT",
@@ -21,7 +24,11 @@
     "@types/csv-stringify": "^1.4.2",
     "@types/fs-extra": "^5.0.2",
     "@types/inquirer": "0.0.41",
+    "@types/jest": "^22.2.3",
+    "coveralls": "^3.0.1",
+    "jest": "^22.4.4",
     "npm-run-all": "^4.1.2",
+    "ts-jest": "^22.4.6",
     "typescript": "^2.8.1"
   },
   "dependencies": {
@@ -38,5 +45,19 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/gsipos/esti-mate-cli.git"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

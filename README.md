@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/gsipos/esti-mate-cli.svg?branch=master)](https://travis-ci.org/gsipos/esti-mate-cli)
 ![npm](https://img.shields.io/npm/v/esti-mate-cli.svg)
+[![Coverage Status](https://coveralls.io/repos/github/gsipos/esti-mate-cli/badge.svg?branch=master)](https://coveralls.io/github/gsipos/esti-mate-cli?branch=master)
 
 
 # EstiMate CLI

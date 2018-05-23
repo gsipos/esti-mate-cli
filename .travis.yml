@@ -1,7 +1,6 @@
 
 language: node_js
 node_js:
-  - "7"
   - "8"
   - "9"
 cache:
@@ -9,5 +8,12 @@ cache:
     - node_modules
 install:
   - npm install
-script:
-  - npm run build
+
+jobs:
+  include:
+    - stage: build
+      script: npm run build
+    - stage: test
+      script: npm run test
+    - stage: coverage
+      script: npm run coveralls
