@@ -11,7 +11,7 @@ import { listTags } from "./list-tags";
 import { saveProjectToFile } from "../service/files";
 import { chooseProjectMenu } from "./choose-project";
 import { chooseTask } from "./choose-task";
-import { addMenuSeparator } from "./utils";
+import { addMenuSeparator, commonTableStyles } from "./utils";
 import { exportTasksToCSV } from "../service/task";
 import { exportTagsToCSV } from "../service/tag";
 
@@ -51,7 +51,9 @@ function displayProjectInfo(project: Project) {
     project,
     project.defaultInterval
   );
-  const table = new Table();
+  const table = new Table({
+    style: commonTableStyles
+  });
   const entries = [
     { "Short handle:": project.short },
     { "Name:": project.name },

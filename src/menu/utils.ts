@@ -8,3 +8,7 @@ export function addMenuSeparator() {
 export function addSimpleSeparator() {
     console.log("");
 }
+
+export const commonTableStyles = {
+    head: ['yellow', 'bold']
+};
