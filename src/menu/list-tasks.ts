@@ -6,6 +6,7 @@ import {
   Task
 } from "../model";
 import Table from "cli-table2";
+import { commonTableStyles } from "./utils";
 
 export function listTasks(tasks: Task[]) {
   const table = new Table({
@@ -19,7 +20,8 @@ export function listTasks(tasks: Task[]) {
       "Worst case",
       "Standard deviation",
       "Standard error"
-    ]
+    ],
+    style: commonTableStyles
   });
 
   const rows = tasks.map(task => [
