@@ -2,6 +2,7 @@ import fse from 'fs-extra';
 import path from 'path';
 import { Project } from '../model';
 import stringify from 'csv-stringify';
+import { parseProject } from './project.parse';
 
 const projectJsonExt = '.project.json';
 
@@ -13,8 +14,11 @@ export async function getDirProjectFiles() {
 export async function loadProjectFromFile(fileName: string) {
     const filePath = path.join(process.cwd(), fileName);
     const file = await fse.readFile(filePath);
-    const project: Project = JSON.parse(file.toString());
-    return project;
+    const result = parseProject(file.toString());
+    if(result.updatedVersion) {
+        saveProjectToFile(result.project);
+    }
+    return result.project;
 }
 
 const projectFileName = (p: Project) => `[${p.short}] ${p.name}${projectJsonExt}`;

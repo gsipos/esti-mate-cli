@@ -13,6 +13,7 @@ describe('Files service', () => {
         name: 'test',
         tasks: [],
         defaultInterval: 95,
+        projectFileVersion: 1,
         short: 'ttt'
     };
 

@@ -38,9 +38,9 @@ export function parseEstimateString(estimateString: string): Estimate {
     const values = tokens.map((v, idx) => parseToken(v, idx));
 
     return {
-        worstCase: values[0],
+        bestCase: values[0],
         mostLikely: values[1],
-        bestCase: values[2],
+        worstCase: values[2],
     };
 }
 
