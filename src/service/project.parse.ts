@@ -1,6 +1,6 @@
 import { Project } from "../model";
 
-const currentProjectVersion = 1;
+export const CURRENT_PROJECT_VERSION = 1;
 
 type ProjectVersionTransformer = (p: Project) => Project
 
