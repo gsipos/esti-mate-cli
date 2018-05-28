@@ -41,7 +41,8 @@ const ProjectMenu: inquirer.Question = {
   type: "list",
   name: "selected",
   message: "What to do next?",
-  choices
+  choices,
+  pageSize: choices.length
 };
 
 const separator = "------------------------------------------";
