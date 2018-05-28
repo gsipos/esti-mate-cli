@@ -1,18 +1,22 @@
 import './files';
 import { Project } from '../model';
-import fse from 'fs-extra';
+import fse, { write } from 'fs-extra';
 import stringify from 'csv-stringify';
+jest.mock('./project.parse');
+import { parseProject } from './project.parse';
 import { getDirProjectFiles, stringifyToCSV, saveToCSVfile, saveProjectToFile, loadProjectFromFile } from './files';
-
 
 describe('Files service', () => {
     const readdirMock = jest.fn();
     fse.readdir = readdirMock as any;
+    const writeJson = jest.fn();
+    fse.writeJson = writeJson;
 
     const sampleProject: Project = {
         name: 'test',
         tasks: [],
         defaultInterval: 95,
+        projectFileVersion: 1,
         short: 'ttt'
     };
 
@@ -32,16 +36,30 @@ describe('Files service', () => {
     it('loadProjectFromFile loads the project from the given filename', async () => {
         const readFile = jest.fn();
         readFile.mockReturnValueOnce(Promise.resolve(Buffer.from(JSON.stringify(sampleProject))));
+        (parseProject as jest.Mock).mockReturnValueOnce({ project: sampleProject, updatedVersion: false });
         fse.readFile = readFile;
         const file = "pr.project.json";
         const result = await loadProjectFromFile(file);
+        expect(parseProject).toHaveBeenCalled();
+        expect(writeJson).not.toHaveBeenCalled();
+        expect(readFile).toHaveBeenCalledWith(expect.stringContaining(file));
+        expect(result).toEqual(sampleProject);
+    });
+
+    it('loadProjectFromFile saves the project immediately if it has been updated during parsing', async () => {
+        const readFile = jest.fn();
+        readFile.mockReturnValueOnce(Promise.resolve(Buffer.from(JSON.stringify(sampleProject))));
+        (parseProject as jest.Mock).mockReturnValueOnce({ project: sampleProject, updatedVersion: true });
+        fse.readFile = readFile;
+        const file = "pr.project.json";
+        const result = await loadProjectFromFile(file);
+        expect(parseProject).toHaveBeenCalled();
+        expect(writeJson).toHaveBeenCalledWith(expect.anything(), sampleProject);
         expect(readFile).toHaveBeenCalledWith(expect.stringContaining(file));
         expect(result).toEqual(sampleProject);
     });
 
     it('saveProjectToFile saves the project object to a project json', async () => {
-        const writeJson = jest.fn();
-        fse.writeJson = writeJson;
         writeJson.mockReturnValueOnce(Promise.resolve(true));
         await saveProjectToFile(sampleProject);
         expect(writeJson).toHaveBeenCalledWith(expect.anything(), sampleProject);

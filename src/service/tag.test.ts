@@ -1,6 +1,7 @@
 import './tag';
 import { Project, Estimate } from '../model';
 import { tagsOf, tasksOfTag } from './tag';
+import { CURRENT_PROJECT_VERSION } from './project.parse';
 
 describe('Tag service', () => {
     const estimate: Estimate = {
@@ -12,6 +13,7 @@ describe('Tag service', () => {
         name: 'asd',
         defaultInterval: 95,
         short: 'asd',
+        projectFileVersion: CURRENT_PROJECT_VERSION,
         tasks: [
             { name: 'a', code: 'a', sequence: 1, estimate, tags: ['a', 'b'] },
             { name: 'a', code: 'a', sequence: 1, estimate, tags: [] },

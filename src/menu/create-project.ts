@@ -3,6 +3,7 @@ import { Project, confidenceIntervals } from "../model";
 import { showProjectMenu } from "./project";
 import { addMenuSeparator } from "./utils";
 import { saveProjectToFile } from "../service/files";
+import { CURRENT_PROJECT_VERSION } from "../service/project.parse";
 
 interface ProjectInit {
     name: string;
@@ -47,6 +48,7 @@ export async function createProjectMenu() {
         name,
         short,
         defaultInterval: defaultInterval.value,
+        projectFileVersion: CURRENT_PROJECT_VERSION,
         tasks: []
     }
     saveProjectToFile(project);

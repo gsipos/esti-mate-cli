@@ -29,6 +29,7 @@ export interface Project {
     short: string;
     tasks: Task[];
     defaultInterval: ConfidenceInterval;
+    projectFileVersion: number;
 }
 
 export const wheightedAverageOfTasks = (tasks: Task[]) =>

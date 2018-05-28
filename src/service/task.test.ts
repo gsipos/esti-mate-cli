@@ -21,6 +21,7 @@ describe('Task service', () => {
     const sampleProject: Project = {
         name: 'asd',
         defaultInterval: 95,
+        projectFileVersion: 1,
         short: 'asd',
         tasks: [
             sampleTask
