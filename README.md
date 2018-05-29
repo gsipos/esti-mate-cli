@@ -43,26 +43,11 @@ At first you will be prompted to create project by entering a few stuff:
 > The project is automatically saved to a JSON file in the directory where the CLI has been started after every modification.
 > You don't have to save manually.
 
-### Choosing a project to work with
-When the CLI is started in a directory that contains previously saved project, you can choose to load a project or create a new one.
-
-![Project chooser](./doc/assets/project-chooser.PNG "Project chooser")
-
-### Working with a project
-When a project is selected:
-
-![Project menu](./doc/assets/project-menu.PNG "Project menu")
-
-### Add a Task
-A task has:
-
-| Property | Description |
-|----------|-------------|
-| Name     | Task's name, duh |
-| Estimate | 3 numbers: best case, most likely, worst case. E.g.: `1 2 3` |
-| Tags     | Comma separated words, tasks can be grouped by tags. E.g.: `ui, sprint1, bug` |
-
-![Single task table](./doc/assets/sample-single-task-table.PNG "Single task table")
+* [Select a project](./doc/menus/choose-project-menu.md)
+* [Create project](./doc/menus/create-project-menu.md)
+* [Working with project](./doc/menus/project-menu.md)
+  * [Add task](./doc/menus/add-task-menu.md)
+  * [Show project summary](./doc/menus/show-project-summary.md)
 
 ### List task estimations
 
