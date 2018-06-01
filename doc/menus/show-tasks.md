@@ -16,3 +16,5 @@ The displayed informations are the following:
 | Standard error     | Calculated from the estimate values
 
 After the table is displayed you are returned to the [project menu](./project-menu.md).
+
+![Multi task table](../assets/sample-multi-task-table.PNG "Multi task table")

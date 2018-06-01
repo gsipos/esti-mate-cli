@@ -20,7 +20,7 @@ This is more flexible, easier to express uncertainity about tasks.
 npm i esti-mate-cli -g
 ```
 
-## Usage
+## Start
 
 Start with the command:
 ```bash
@@ -31,14 +31,7 @@ or with the shorter command:
 emc
 ```
 
-### Creating a project
-At first you will be prompted to create project by entering a few stuff:
-
-| Property | Description |
-|----------|-------------|
-| Project name | A simple string to be used as a name |
-| Short handle | A 2-4 character short name, like `ABC` |
-| Confidence interval | more about this on [Wikipedia](https://en.wikipedia.org/wiki/Confidence_interval) |
+## Usage
 
 > The project is automatically saved to a JSON file in the directory where the CLI has been started after every modification.
 > You don't have to save manually.
@@ -51,20 +44,8 @@ At first you will be prompted to create project by entering a few stuff:
   * [Show tasks](./doc/menus/show-tasks.md)
   * [Show tags](./doc/menus/show-tags.md)
   * [Modifing tasks](./doc/menus/modify-task.md)
-
-### List task estimations
-
-![Multi task table](./doc/assets/sample-multi-task-table.PNG "Multi task table")
-
-### List tags
-
-![Tags table](./doc/assets/sample-tags-list.PNG "Tags table")
-
-## Project summary
-
-![Project summary](./doc/assets/sample-project-summary.PNG "Project summary")
-
-> More details coming soon
+  * [Export tasks to CSV](./doc/menus/export-tasks-to-csv.md)
+  * [Export tags to CSV](./export-tags-to-csv.md)
 
 ## Data handling
 Your data will not be sent over the network.

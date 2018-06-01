@@ -15,3 +15,5 @@ All additional info of a specific tag is calculated from the tasks that have tha
 | Standard error | calculated from the tasks's standard errors
 
 After the table is shown, you are back to the [project menu](./project-menu.md).
+
+![Tags table](../assets/sample-tags-list.PNG "Tags table")
