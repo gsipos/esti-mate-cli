@@ -48,6 +48,9 @@ At first you will be prompted to create project by entering a few stuff:
 * [Working with project](./doc/menus/project-menu.md)
   * [Add task](./doc/menus/add-task-menu.md)
   * [Show project summary](./doc/menus/show-project-summary.md)
+  * [Show tasks](./doc/menus/show-tasks.md)
+  * [Show tags](./doc/menus/show-tags.md)
+  * [Modifing tasks](./doc/menus/modify-task.md)
 
 ### List task estimations
 
