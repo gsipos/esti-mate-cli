@@ -15,7 +15,7 @@ import { addMenuSeparator, commonTableStyles } from "./utils";
 import { exportTasksToCSV } from "../service/task";
 import { exportTagsToCSV } from "../service/tag";
 
-enum ProjectMenuEntry {
+export enum ProjectMenuEntry {
   ADD_TASK = "Add task",
   SHOW_PROJECT_SUMMARY = "Show project summary",
   SHOW_TASKS = "Show tasks",
@@ -45,9 +45,7 @@ const ProjectMenu: inquirer.Question = {
   pageSize: choices.length
 };
 
-const separator = "------------------------------------------";
-
-function displayProjectInfo(project: Project) {
+export function displayProjectInfo(project: Project) {
   const interval = confidenceIntervalOfProject(
     project,
     project.defaultInterval

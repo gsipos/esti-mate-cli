@@ -55,7 +55,6 @@ async function changeTaskNameMenu(task: Task, project: Project) {
     message: "New task name:",
     default: task.name
   });
-  task.name = answer.name;
   changeTaskName(project, task, answer.name);
 }
 
@@ -75,7 +74,8 @@ async function changeTaskTagsMenu(task: Task, project: Project) {
     name: "tags",
     message: "New tags:"
   });
-  changeTaskTags(project, task, answer.tags.split(','));
+  const newTags = answer.tags.split(',').map(s => s.trim());
+  changeTaskTags(project, task, newTags);
 }
 
 async function deleteTaskMenu(task: Task, project: Project) {

@@ -1,4 +1,4 @@
-import { Estimate, wheightedAverageOfEstimate, standardDeviationOfEstimate } from "./model";
+import { Estimate, wheightedAverageOfEstimate, standardDeviationOfEstimate, meanValueOfEstimate, wheightedAverageOfTasks, Task, meanValueOfProject, Project, confidenceIntervalOfProject } from "./model";
 
 
 describe('Model', () => {
@@ -8,6 +8,11 @@ describe('Model', () => {
         mostLikely: m,
         worstCase: w
     });
+
+    const tasks = [
+        { estimate: toEstimate(1, 2, 3) },
+        { estimate: toEstimate(2,3,4) },
+    ]
 
     describe('wheighted average of estimate', () => {
         it('should be zero for zero estimates', () =>
@@ -25,4 +30,21 @@ describe('Model', () => {
             expect(standardDeviationOfEstimate(toEstimate(1,2,7))).toBe(1));
     });
 
+    it('mean value of estimate returns the correct value', () => {
+        expect(meanValueOfEstimate(toEstimate(1, 2, 3))).toBe(2);
+    });
+
+    it('wheightedAverageOfTasks returns the sum estimation of tasks', () => {
+        expect(wheightedAverageOfTasks(tasks as Task[])).toBe(5);
+    });
+
+    it('meanValueOfProject returns the mean of the task estimations', () => {
+        expect(meanValueOfProject({ tasks } as any as Project)).toBe(2.5)
+    });
+
+    it('confidenceIntervalOfProject returns min and max values of an interval', () => {
+        const interval = confidenceIntervalOfProject({ tasks } as any as Project);
+        expect(interval.min).toBeGreaterThan(0);
+        expect(interval.max).toBeGreaterThan(interval.min);
+    });
 });

@@ -36,7 +36,7 @@ export const wheightedAverageOfTasks = (tasks: Task[]) =>
     tasks.reduce((acc, task) => acc + wheightedAverageOfEstimate(task.estimate), 0);
 
 export const meanValueOfProject = (p: Project) =>
-    p.tasks.reduce((acc, task) => meanValueOfEstimate(task.estimate), 0);
+    p.tasks.reduce((acc, task) => acc + meanValueOfEstimate(task.estimate), 0) / p.tasks.length;
 
 export const standardErrorOTasks = (tasks: Task[]) =>
     Math.sqrt(tasks.reduce((acc, task) => acc + standardErrorOfEstimate(task.estimate) ** 2, 0));
