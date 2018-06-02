@@ -6,6 +6,7 @@ jest.mock('./choose-project');
 jest.mock('./choose-task');
 jest.mock('../service/task');
 jest.mock('../service/tag');
+jest.mock('./utils');
 
 import inquirer from 'inquirer';
 import { ProjectMenuEntry, showProjectMenu, displayProjectInfo } from './project';

@@ -1,6 +1,7 @@
 import { Project, Task } from "../model";
 jest.mock('./task');
 jest.mock('inquirer');
+jest.mock('./utils');
 import { showTaskMenu } from "./task";
 import { chooseTask } from "./choose-task";
 import inquirer from "inquirer";

@@ -1,6 +1,7 @@
 jest.mock('inquirer');
 jest.mock('../service/files');
 jest.mock('./project');
+jest.mock('./utils');
 
 import inquirer from 'inquirer';
 import { saveProjectToFile } from '../service/files';
