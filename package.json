@@ -25,6 +25,8 @@
     "@types/fs-extra": "^5.0.2",
     "@types/inquirer": "0.0.41",
     "@types/jest": "^22.2.3",
+    "@types/node-fetch": "^2.1.1",
+    "@types/semver": "^5.5.0",
     "coveralls": "^3.0.1",
     "jest": "^22.4.4",
     "npm-run-all": "^4.1.2",
@@ -35,7 +37,9 @@
     "cli-table2": "^0.2.0",
     "csv-stringify": "^3.0.0",
     "fs-extra": "^5.0.0",
-    "inquirer": "^5.2.0"
+    "inquirer": "^5.2.0",
+    "node-fetch": "^2.1.2",
+    "semver": "^5.5.0"
   },
   "preferGlobal": true,
   "bin": {
