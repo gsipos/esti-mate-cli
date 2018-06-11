@@ -6,7 +6,7 @@ import {
   wheightedAverageOfTasks,
   standardErrorOTasks
 } from "../model";
-import Table from "cli-table2";
+import Table from "cli-table3";
 import { tagsOf, tagToInfoArray } from "../service/tag";
 import { commonTableStyles } from "./utils";
 
