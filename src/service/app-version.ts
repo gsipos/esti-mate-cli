@@ -10,12 +10,12 @@ interface PackageInfo {
     version: string;
 }
 
-function currentAppVersion() {
+export function currentAppVersion() {
     const packageInfo: PackageInfo = require('../../package.json');
     return packageInfo.version;
 }
 
-async function getLatestAppVersion() {
+export async function getLatestAppVersion() {
     const response = await fetch(LATEST_APP_INFO_URL);
     const latestPackageInfo: PackageInfo = await response.json();
     return latestPackageInfo.version;
