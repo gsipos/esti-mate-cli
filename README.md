@@ -45,7 +45,7 @@ emc
   * [Show tags](./doc/menus/show-tags.md)
   * [Modifing tasks](./doc/menus/modify-task.md)
   * [Export tasks to CSV](./doc/menus/export-tasks-to-csv.md)
-  * [Export tags to CSV](./export-tags-to-csv.md)
+  * [Export tags to CSV](./doc/menus/export-tags-to-csv.md)
 
 ## Data handling
 Your data will not be sent over the network.
