@@ -1,4 +1,4 @@
-# EstiMante - Modify task
+# EstiMate - Modify task
 
 In this menu you can edit a task's name, estimate or tags.
 The inputs have the same rules as in the [task creation](./add-task-menu.md).
