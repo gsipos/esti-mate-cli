@@ -42,6 +42,7 @@ export const standardErrorOTasks = (tasks: Task[]) =>
     Math.sqrt(tasks.reduce((acc, task) => acc + standardErrorOfEstimate(task.estimate) ** 2, 0));
 
 type ConfidenceInterval = 68 | 90 | 95 | 99.7;
+export const DEFAULT_CONFIDENCE_INTERVAL: ConfidenceInterval = 95;
 export const confidenceIntervals: ConfidenceInterval[] = [68, 90, 95, 99.7];
 export const confidenceIntervalCoEfficients = {
     68: 1,
@@ -50,9 +51,9 @@ export const confidenceIntervalCoEfficients = {
     99.7: 3
 };
 
-export const confidenceIntervalOfProject = (p: Project, interval: ConfidenceInterval = 95) => {
-    const estimate = wheightedAverageOfTasks(p.tasks);
-    const error = standardErrorOTasks(p.tasks);
+export const confidenceIntervalOfTasks = (tasks: Task[], interval: ConfidenceInterval = DEFAULT_CONFIDENCE_INTERVAL) => {
+    const estimate = wheightedAverageOfTasks(tasks);
+    const error = standardErrorOTasks(tasks);
     const coEfficient = confidenceIntervalCoEfficients[interval];
     return {
         min: estimate - coEfficient * error,
@@ -62,5 +63,5 @@ export const confidenceIntervalOfProject = (p: Project, interval: ConfidenceInte
 
 export const confidenceIntervalsOfProject = (p: Project) => confidenceIntervals.map(interval => ({
     interval,
-    ...confidenceIntervalOfProject(p, interval)
+    ...confidenceIntervalOfTasks(p.tasks, interval)
 }));
