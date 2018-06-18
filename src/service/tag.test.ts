@@ -29,6 +29,6 @@ describe('Tag service', () => {
     it('tasksOfTag returns the list of tasks that have a specific tag', () =>
         expect(tasksOfTag('a', sampleProject)).toEqual([sampleProject.tasks[0], sampleProject.tasks[3]]));
 
-    it('tagToInfoArray return an array of values to be displayed as a table, or be exported as csv');
-    it('exportTagsToCSV export tag summary to csv file');
+    xit('tagToInfoArray return an array of values to be displayed as a table, or be exported as csv', () => {});
+    xit('exportTagsToCSV export tag summary to csv file', () => { });
 });

@@ -1,4 +1,4 @@
-import { Project, wheightedAverageOfTasks, standardErrorOTasks } from "../model";
+import { Project, wheightedAverageOfTasks, standardErrorOTasks, confidenceIntervalOfTasks, DEFAULT_CONFIDENCE_INTERVAL } from "../model";
 import { stringifyToCSV, saveToCSVfile } from "./files";
 
 export function tagsOf(p: Project) {
@@ -12,13 +12,15 @@ export const tasksOfTag = (tag: string, project: Project) =>
 
 export function tagToInfoArray(tag: string, project: Project) {
     const tasks = tasksOfTag(tag, project);
+    const confidence = confidenceIntervalOfTasks(tasks, project.defaultInterval);
     return [
         tag,
         wheightedAverageOfTasks(tasks).toFixed(2),
         tasks.reduce((acc, t) => acc + t.estimate.bestCase, 0),
         tasks.reduce((acc, t) => acc + t.estimate.mostLikely, 0),
         tasks.reduce((acc, t) => acc + t.estimate.worstCase, 0),
-        standardErrorOTasks(tasks).toFixed(2)
+        standardErrorOTasks(tasks).toFixed(2),
+        `${confidence.min.toFixed(2)} - ${confidence.max.toFixed(2)}`
       ];
 }
 
@@ -27,7 +29,7 @@ export async function exportTagsToCSV(project: Project) {
     const tagData = tagsOf(project)
         .sort()
         .map(t => tagToInfoArray(t, project));
-    const header = ['Tag', 'Estimate', 'Best case', 'Most likely', 'Worst case', 'Standard error'];
+    const header = ['Tag', 'Estimate', 'Best case', 'Most likely', 'Worst case', 'Standard error', `${project.defaultInterval || DEFAULT_CONFIDENCE_INTERVAL}% confidence interval`];
     const csvString = await stringifyToCSV(tagData, header);
     await saveToCSVfile(csvString, fileName);
 }

@@ -2,13 +2,12 @@ import inquirer from "inquirer";
 import {
   Project,
   wheightedAverageOfTasks,
-  confidenceIntervalOfProject
+  confidenceIntervalOfTasks
 } from "../model";
 import { showAddTaskPrompt } from "./add-task";
 import { listTasks } from "./list-tasks";
 import Table from "cli-table2";
 import { listTags } from "./list-tags";
-import { saveProjectToFile } from "../service/files";
 import { chooseProjectMenu } from "./choose-project";
 import { chooseTask } from "./choose-task";
 import { addMenuSeparator, commonTableStyles } from "./utils";
@@ -46,8 +45,8 @@ const ProjectMenu: inquirer.Question = {
 };
 
 export function displayProjectInfo(project: Project) {
-  const interval = confidenceIntervalOfProject(
-    project,
+  const interval = confidenceIntervalOfTasks(
+    project.tasks,
     project.defaultInterval
   );
   const table = new Table({
