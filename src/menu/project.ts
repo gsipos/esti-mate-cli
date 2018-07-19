@@ -6,7 +6,7 @@ import {
 } from "../model";
 import { showAddTaskPrompt } from "./add-task";
 import { listTasks } from "./list-tasks";
-import Table from "cli-table2";
+import Table from "cli-table3";
 import { listTags } from "./list-tags";
 import { saveProjectToFile } from "../service/files";
 import { chooseProjectMenu } from "./choose-project";

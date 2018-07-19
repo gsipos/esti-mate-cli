@@ -5,7 +5,7 @@ import {
   standardErrorOfEstimate,
   Task
 } from "../model";
-import Table from "cli-table2";
+import Table from "cli-table3";
 import { commonTableStyles } from "./utils";
 
 export function listTasks(tasks: Task[]) {
