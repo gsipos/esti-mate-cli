@@ -1,6 +1,9 @@
 workflow "New workflow" {
   on = "push"
-  resolves = ["Test"]
+  resolves = [
+    "Build",
+    "Test",
+  ]
 }
 
 action "npm install" {
@@ -16,6 +19,6 @@ action "Build" {
 
 action "Test" {
   uses = "actions/npm@1.0.0"
+  needs = ["npm install"]
   args = "run coverage"
-  needs = "Build"
 }
